@@ -1,6 +1,10 @@
 defmodule OrbitaHealth.Endpoint do
   use Phoenix.Endpoint, otp_app: :orbita_health
 
+  if Application.get_env(:orbita_health, :sql_sandbox) do
+    plug Phoenix.Ecto.SQL.Sandbox
+  end
+
   socket "/socket", OrbitaHealth.UserSocket
 
   # Serve at "/" the static files from "priv/static" directory.
